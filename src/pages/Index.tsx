@@ -11,36 +11,35 @@ const Index = () => {
 
   const languages = [
     {
-      name: "JavaScript",
-      icon: "🟨",
-      description: "Learn modern JavaScript fundamentals",
-      progress: 65,
-      totalLessons: 12,
-      completedLessons: 8
+      name: "C Programming",
+      icon: "🔧",
+      description: "Foundation of programming",
+      progress: 32,
+      totalLessons: 28,
+      completedLessons: 9
+    },
+    {
+      name: "C++",
+      icon: "⚡",
+      description: "Object-oriented programming",
+      progress: 15,
+      totalLessons: 35,
+      completedLessons: 5
     },
     {
       name: "Python",
       icon: "🐍",
-      description: "Master Python programming basics",
-      progress: 25,
-      totalLessons: 10,
-      completedLessons: 2
+      description: "Simple and powerful syntax",
+      progress: 67,
+      totalLessons: 25,
+      completedLessons: 17
     },
     {
-      name: "HTML & CSS",
-      icon: "🎨",
-      description: "Build beautiful web interfaces",
+      name: "Advanced C++",
+      icon: "🚀",
+      description: "Advanced concepts & STL",
       progress: 0,
-      totalLessons: 8,
-      completedLessons: 0,
-      isLocked: true
-    },
-    {
-      name: "React",
-      icon: "⚛️",
-      description: "Create dynamic user interfaces",
-      progress: 0,
-      totalLessons: 15,
+      totalLessons: 40,
       completedLessons: 0,
       isLocked: true,
       isPremium: true
@@ -63,14 +62,14 @@ const Index = () => {
         <div className="container mx-auto max-w-4xl">
           <div className="animate-slide-up">
             <Badge className="mb-4 bg-gradient-primary text-primary-foreground">
-              🎉 New Course: Advanced JavaScript
+              🐻 New Course: Advanced C++
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              Learn to Code,<br />One Lesson at a Time
+              Learn Programming,<br />One Lesson at a Time
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Master programming languages through bite-sized, interactive lessons. 
-              Build your coding skills with gamified learning that makes progress fun!
+              Master C, C++, and Python with your friendly blue bear companion. 
+              Build your coding skills through interactive, bite-sized challenges!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg">
@@ -104,11 +103,11 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Choose Your Language
+              Choose Your Programming Language
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Start with any programming language and build your way up to advanced concepts.
-              Our courses are designed to take you from beginner to proficient.
+              Start with C programming fundamentals, advance to C++ object-oriented concepts, 
+              or explore Python's elegant syntax. Learn at your own pace with CodeBear!
             </p>
           </div>
           
