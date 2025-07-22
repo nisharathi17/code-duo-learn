@@ -11,73 +11,62 @@ export default function Lessons() {
   const { language } = useParams();
 
   const generateCLessons = () => {
-    const levels = [
+    const lessons = [
       {
-        title: "Level 1: Variables and Data Types",
-        description: "Master the fundamentals of C variables and data types",
-        topics: ["Valid declarations", "Data type sizes", "Type conversion", "Constants", "Sizeof operator", "Input/Output"],
-        rounds: 1 // Special case: only 1 round for level 1
+        title: "Origin and theory of C",
+        description: "A little history of C before we kick off",
+        duration: "3 min",
+        xp: 25,
+        difficulty: "Beginner" as const,
+        isCompleted: true,
+        isLocked: false
       },
       {
-        title: "Level 2: Comments",
-        description: "Learn to document your C code effectively",
-        topics: ["Single-line comments", "Multi-line comments", "Documentation style", "Code readability", "Best practices", "Comment syntax"],
-        rounds: 3
+        title: "Syntax",
+        description: "Learn the basic syntax rules of C programming",
+        duration: "5 min",
+        xp: 30,
+        difficulty: "Beginner" as const,
+        isCompleted: false,
+        isLocked: false
       },
       {
-        title: "Level 3: Functions",
-        description: "Understand function creation and usage in C",
-        topics: ["Function declaration", "Function definition", "Parameters", "Return values", "Function calls", "Local variables"],
-        rounds: 3
+        title: "Variables and Constants",
+        description: "Master variable declarations and constants in C",
+        duration: "7 min",
+        xp: 35,
+        difficulty: "Beginner" as const,
+        isCompleted: false,
+        isLocked: false
       },
       {
-        title: "Level 4: If-Else Statements",
-        description: "Master conditional logic and decision making",
-        topics: ["If statements", "Else clauses", "Else-if chains", "Nested conditions", "Logical operators", "Comparison operators"],
-        rounds: 3
+        title: "Data types",
+        description: "Understand different data types available in C",
+        duration: "6 min",
+        xp: 40,
+        difficulty: "Beginner" as const,
+        isCompleted: false,
+        isLocked: false
       },
       {
-        title: "Level 5: Loops",
-        description: "Learn iteration and repetitive operations",
-        topics: ["For loops", "While loops", "Do-while loops", "Loop control", "Break and continue", "Nested loops"],
-        rounds: 3
+        title: "Operators",
+        description: "Learn about arithmetic, logical, and comparison operators",
+        duration: "8 min",
+        xp: 45,
+        difficulty: "Intermediate" as const,
+        isCompleted: false,
+        isLocked: false
+      },
+      {
+        title: "If else",
+        description: "Master conditional statements and decision making",
+        duration: "10 min",
+        xp: 50,
+        difficulty: "Intermediate" as const,
+        isCompleted: false,
+        isLocked: false
       }
     ];
-
-    const lessons = [];
-    let lessonNumber = 0;
-    
-    levels.forEach((level, levelIndex) => {
-      for (let round = 1; round <= level.rounds; round++) {
-        for (let exercise = 1; exercise <= 6; exercise++) {
-          lessonNumber++;
-          const topicIndex = (exercise - 1) % level.topics.length;
-          
-          // Special content for first exercise of level 1
-          let title, description;
-          if (levelIndex === 0 && round === 1 && exercise === 1) {
-            title = "Origin and theory of C";
-            description = "A little history of C before we kick off";
-          } else {
-            title = `${level.title.split(': ')[1]} - ${level.rounds === 1 ? `Exercise ${exercise}` : `Round ${round}.${exercise}`}`;
-            description = `Practice ${level.topics[topicIndex].toLowerCase()}`;
-          }
-          
-          lessons.push({
-            title,
-            description,
-            duration: "3 min",
-            xp: 25,
-            difficulty: levelIndex < 2 ? "Beginner" as const : levelIndex < 4 ? "Intermediate" as const : "Advanced" as const,
-            level: levelIndex + 1,
-            round: round,
-            exercise: exercise,
-            isCompleted: lessonNumber <= 6, // First 6 lessons completed
-            isLocked: lessonNumber > 8 // Lock lessons after 8
-          });
-        }
-      }
-    });
 
     return lessons;
   };
