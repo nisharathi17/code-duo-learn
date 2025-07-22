@@ -56,8 +56,8 @@ export default function Lessons() {
           // Special content for first exercise of level 1
           let title, description;
           if (levelIndex === 0 && round === 1 && exercise === 1) {
-            title = "Valid Declarations in C";
-            description = "Which of the following is not a valid declaration in C?";
+            title = "Origin and theory of C";
+            description = "A little history of C before we kick off";
           } else {
             title = `${level.title.split(': ')[1]} - ${level.rounds === 1 ? `Exercise ${exercise}` : `Round ${round}.${exercise}`}`;
             description = `Practice ${level.topics[topicIndex].toLowerCase()}`;
