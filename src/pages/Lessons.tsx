@@ -15,49 +15,65 @@ export default function Lessons() {
       {
         title: "Level 1: Variables and Data Types",
         description: "Master the fundamentals of C variables and data types",
-        topics: ["int, float, char", "Variable declaration", "Type conversion", "Constants", "Sizeof operator", "Input/Output"]
+        topics: ["Valid declarations", "Data type sizes", "Type conversion", "Constants", "Sizeof operator", "Input/Output"],
+        rounds: 1 // Special case: only 1 round for level 1
       },
       {
         title: "Level 2: Comments",
         description: "Learn to document your C code effectively",
-        topics: ["Single-line comments", "Multi-line comments", "Documentation style", "Code readability", "Best practices", "Comment syntax"]
+        topics: ["Single-line comments", "Multi-line comments", "Documentation style", "Code readability", "Best practices", "Comment syntax"],
+        rounds: 3
       },
       {
         title: "Level 3: Functions",
         description: "Understand function creation and usage in C",
-        topics: ["Function declaration", "Function definition", "Parameters", "Return values", "Function calls", "Local variables"]
+        topics: ["Function declaration", "Function definition", "Parameters", "Return values", "Function calls", "Local variables"],
+        rounds: 3
       },
       {
         title: "Level 4: If-Else Statements",
         description: "Master conditional logic and decision making",
-        topics: ["If statements", "Else clauses", "Else-if chains", "Nested conditions", "Logical operators", "Comparison operators"]
+        topics: ["If statements", "Else clauses", "Else-if chains", "Nested conditions", "Logical operators", "Comparison operators"],
+        rounds: 3
       },
       {
         title: "Level 5: Loops",
         description: "Learn iteration and repetitive operations",
-        topics: ["For loops", "While loops", "Do-while loops", "Loop control", "Break and continue", "Nested loops"]
+        topics: ["For loops", "While loops", "Do-while loops", "Loop control", "Break and continue", "Nested loops"],
+        rounds: 3
       }
     ];
 
     const lessons = [];
+    let lessonNumber = 0;
     
     levels.forEach((level, levelIndex) => {
-      for (let round = 1; round <= 3; round++) {
+      for (let round = 1; round <= level.rounds; round++) {
         for (let exercise = 1; exercise <= 6; exercise++) {
-          const lessonNumber = levelIndex * 18 + (round - 1) * 6 + exercise;
+          lessonNumber++;
           const topicIndex = (exercise - 1) % level.topics.length;
           
+          // Special content for first exercise of level 1
+          let title, description;
+          if (levelIndex === 0 && round === 1 && exercise === 1) {
+            title = "Valid Declarations in C";
+            description = "Which of the following is not a valid declaration in C?";
+          } else {
+            title = `${level.title.split(': ')[1]} - ${level.rounds === 1 ? `Exercise ${exercise}` : `Round ${round}.${exercise}`}`;
+            description = `Practice ${level.topics[topicIndex].toLowerCase()}`;
+          }
+          
           lessons.push({
-            title: `${level.title.split(': ')[1]} - Round ${round}.${exercise}`,
-            description: `Practice ${level.topics[topicIndex].toLowerCase()}`,
+            title,
+            description,
             duration: "3 min",
             xp: 25,
             difficulty: levelIndex < 2 ? "Beginner" as const : levelIndex < 4 ? "Intermediate" as const : "Advanced" as const,
             level: levelIndex + 1,
             round: round,
             exercise: exercise,
-            isCompleted: lessonNumber <= 12, // First 12 lessons completed
-            isLocked: lessonNumber > 15 // Lock lessons after 15
+            isCompleted: lessonNumber <= 6, // First 6 lessons completed
+            isLocked: lessonNumber > 8 // Lock lessons after 8
           });
         }
       }
