@@ -10,38 +10,79 @@ export default function Lessons() {
   const navigate = useNavigate();
   const { language } = useParams();
 
-  const lessonsData = {
-    javascript: [
+  const generateCLessons = () => {
+    const levels = [
       {
-        title: "Variables and Data Types",
-        description: "Learn about let, const, var and basic data types",
-        duration: "15 min",
-        xp: 50,
-        difficulty: "Beginner" as const,
-        isCompleted: true
+        title: "Level 1: Variables and Data Types",
+        description: "Master the fundamentals of C variables and data types",
+        topics: ["int, float, char", "Variable declaration", "Type conversion", "Constants", "Sizeof operator", "Input/Output"]
       },
       {
-        title: "Functions and Scope",
-        description: "Understanding function declarations and scope",
+        title: "Level 2: Comments",
+        description: "Learn to document your C code effectively",
+        topics: ["Single-line comments", "Multi-line comments", "Documentation style", "Code readability", "Best practices", "Comment syntax"]
+      },
+      {
+        title: "Level 3: Functions",
+        description: "Understand function creation and usage in C",
+        topics: ["Function declaration", "Function definition", "Parameters", "Return values", "Function calls", "Local variables"]
+      },
+      {
+        title: "Level 4: If-Else Statements",
+        description: "Master conditional logic and decision making",
+        topics: ["If statements", "Else clauses", "Else-if chains", "Nested conditions", "Logical operators", "Comparison operators"]
+      },
+      {
+        title: "Level 5: Loops",
+        description: "Learn iteration and repetitive operations",
+        topics: ["For loops", "While loops", "Do-while loops", "Loop control", "Break and continue", "Nested loops"]
+      }
+    ];
+
+    const lessons = [];
+    
+    levels.forEach((level, levelIndex) => {
+      for (let round = 1; round <= 3; round++) {
+        for (let exercise = 1; exercise <= 6; exercise++) {
+          const lessonNumber = levelIndex * 18 + (round - 1) * 6 + exercise;
+          const topicIndex = (exercise - 1) % level.topics.length;
+          
+          lessons.push({
+            title: `${level.title.split(': ')[1]} - Round ${round}.${exercise}`,
+            description: `Practice ${level.topics[topicIndex].toLowerCase()}`,
+            duration: "3 min",
+            xp: 25,
+            difficulty: levelIndex < 2 ? "Beginner" as const : levelIndex < 4 ? "Intermediate" as const : "Advanced" as const,
+            level: levelIndex + 1,
+            round: round,
+            exercise: exercise,
+            isCompleted: lessonNumber <= 12, // First 12 lessons completed
+            isLocked: lessonNumber > 15 // Lock lessons after 15
+          });
+        }
+      }
+    });
+
+    return lessons;
+  };
+
+  const lessonsData = {
+    'c programming': generateCLessons(),
+    'c++': [
+      {
+        title: "C++ Basics",
+        description: "Introduction to C++ syntax and features",
         duration: "20 min",
         xp: 75,
         difficulty: "Beginner" as const,
-        isCompleted: true
-      },
-      {
-        title: "Arrays and Objects",
-        description: "Working with arrays and objects in JavaScript",
-        duration: "25 min",
-        xp: 100,
-        difficulty: "Intermediate" as const,
         isCompleted: false
       },
       {
-        title: "Async Programming",
-        description: "Promises, async/await and handling asynchronous code",
-        duration: "30 min",
-        xp: 150,
-        difficulty: "Advanced" as const,
+        title: "Object-Oriented Programming",
+        description: "Classes, objects and OOP principles",
+        duration: "25 min",
+        xp: 100,
+        difficulty: "Intermediate" as const,
         isLocked: true
       }
     ],
